@@ -12,32 +12,32 @@ Sample Output
 
 #include <iostream>
 #include <string>
-#include <vector>
+#include <stack>
 using namespace std;
 
 void reverse(string &str) {
-	int index = -1;
 	string sub1, sub2;
+	stack<char> stack1, stack2;
 	
 	for (int i = 0; i < str.size(); ++i) {
 		if(str[i] == '_') {
-			index = i;
+			for (int j = i+1; j < str.size(); ++j) 
+				stack2.push(str[j]);
 			break;
 		}
+		stack1.push(str[i]);
 	}
-	
-	if (index != -1) {
-		for (int i = index-1; i >= 0; --i) 
-			sub1.push_back(str[i]);
-		for (int i = str.size()-1; i > index; --i) 
-			sub2.push_back(str[i]);
-		str = sub1 + '_' + sub2;
+	int len1 = stack1.size(), len2 = stack2.size();
+	for (int i = 0; i < len1; ++i)	{
+		sub1.push_back(stack1.top());
+		stack1.pop();
 	}
-	else {
-		for (int i = str.size()-1; i >= 0; -- i) 
-			sub1.push_back(str[i]);
-		str = sub1;
+	for (int i = 0; i < len2; ++i) {
+		sub2.push_back(stack2.top());
+		stack2.pop();
 	}
+	if (len2 != 0)	str = sub1 + '_' + sub2;
+	else 	str = sub1;
 }
 
 ostream & operator << (ostream &out, const string &str) {
@@ -50,14 +50,10 @@ ostream & operator << (ostream &out, const string &str) {
 int main() {
 	int size;
 	cin >> size;
-	vector<string> strings;
 	for (int i = 0; i < size; ++i) {
 		string str;
 		cin >> str;
 		reverse(str);
-		strings.push_back(str);
-	}
-	for (int i = 0; i < strings.size(); ++i) {
-		cout << strings[i] << endl;
+		cout << str << endl;
 	}
 }
