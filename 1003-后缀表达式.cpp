@@ -15,27 +15,24 @@ Sample Output
 using namespace std;
 
 double calculate(const string &str) {
-	stack<char> stack;
-	double result = 0;
-	for (int i = 0; i < str.size(); ++i) {
-		if (!stack.empty() and (str[i]=='+' or str[i]=='-' or str[i]=='*' or str[i]=='/')) {
-			int num1, num2;
-			num1 = stack.top()-'a'+1;
+	stack<double> stack;
+	int len = str.size();
+	for (double i = 0; i < len; ++i) {
+		if (str[i]=='+' or str[i]=='-' or str[i]=='*' or str[i]=='/') {
+			double num1 = stack.top();
+			stack.pop();
+			double num2 = stack.top();
 			stack.pop();
 			
-			if (result == 0 and !stack.empty()) {
-				num2 = stack.top()-'a'+1;
-				stack.pop();
-			}
-			else num2 = result;
-			
-			if (str[i] == '+')	result = num1+num2; 
-			if (str[i] == '-')	result = num1-num2;
-			if (str[i] == '*')	result = num1*num2;
-			if (str[i] == '/')	result = num1/num2;
+			if (str[i] == '+')	stack.push(num1+num2);
+			if (str[i] == '-')	stack.push(num2-num1);
+			if (str[i] == '*')	stack.push(num1*num2);
+			if (str[i] == '/')	stack.push(num2/num1);
+
 		}
-		else stack.push(str[i]);
+		else stack.push(str[i]-'a'+1);
 	}
+	double result = stack.top();
 	return result;
 }
 
@@ -49,3 +46,5 @@ int main() {
 		cout << calculate(str) << endl;
 	}
 }
+
+
