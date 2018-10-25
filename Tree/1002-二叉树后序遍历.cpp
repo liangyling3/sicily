@@ -1,4 +1,9 @@
 // 递归
+// sample input
+// 		GDAFEMHZ
+//		ADEFGHMZ
+// sample output
+// 		AEFDHZMG
 #include <iostream>
 #include <string>
 using namespace std;
