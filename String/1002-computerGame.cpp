@@ -38,11 +38,11 @@ void checkMatching(const vector<int> &code, const vector<int> &gate) {
 			}
 		}
 		if (flag == 1) {
-			cout << i << endl;
+			cout << i << '\n';
 			return;
 		}
 	}
-	cout << "no solution" << endl;
+	cout << "no solution\n";
 }
 
 int main() {
