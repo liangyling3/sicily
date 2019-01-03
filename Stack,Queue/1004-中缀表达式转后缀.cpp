@@ -35,7 +35,10 @@ void infixToPostfix(string &infix) {
 		if (isLetter(infix[i]))	
 			postfix += infix[i];
 		if (isOperator(infix[i]) or infix[i] == '(') {
-			while (!stack.empty() and (compare(infix[i],stack.top()) == -1 or compare(infix[i],stack.top()) == 0)) { 	// 优先级低于或等于栈顶元素	 
+			while (!stack.empty() and 
+				(compare(infix[i],stack.top()) == -1 
+				or compare(infix[i],stack.top()) == 0)) { 	// 优先级低于或等于栈顶元素	 
+				
 				postfix += stack.top();
 				stack.pop();
 			}
