@@ -2,6 +2,7 @@
 using namespace std;
 
 int arr[20000001] = {0};
+int findk(int size, int k);
 
 int main() {
 	ios::sync_with_stdio(false);
@@ -10,6 +11,10 @@ int main() {
 	int n, k;
 	int max = -10000000;
 	cin >> n >> k;
+	cout << findk(n, k) << '\n';
+}
+
+int findk(int n, int k) {
 	for (int i = 0; i < n; ++i) {
 		int index;
 		cin >> index;
@@ -23,8 +28,7 @@ int main() {
 		if (arr[i] == 1) {
 			count ++;
 			if (count == k) {
-				cout << i-10000000 << '\n';
-				break;
+				return i-10000000;
 			}
 		}
 	}

@@ -35,7 +35,6 @@ int getConnectComponents(const Graph & g) {
 	for (int i = 0; i < g.size; ++ i) {
 		isVisited.push_back(0);
 	}
-
 	for (int i = 0; i < g.size; ++ i) {		
 		if (isVisited[i] == 0) {
 			dfs(i, isVisited, g);
